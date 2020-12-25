@@ -1,7 +1,7 @@
 # The ultimate Timing node for Node-Red
 
 ## Purpose
-BigTimer is the best Node-Red timing node offering a range of timing facilities. BigTimers can be used singly or in groups. Full support for dusk/sunset dawn/sunrise and variations also day/week/month (and special days) control. The node offers outputs suitable for MQTT, speech and databases. You can also manually over-ride the UTC time setting on the host computer if required.
+**BigTimer** is the best Node-Red timing node offering a range of timing facilities. BigTimers can be used singly or in groups. Full support for dusk/sunset dawn/sunrise and variations also day/week/month (and special days) control. The node offers outputs suitable for MQTT, speech and databases. You can also manually over-ride the UTC time setting on the host computer if required.
 
 ## Usage
 Suitable for general use and very powerful, BigTimer has 3 outputs, the first of which triggers when there is a change of state and presents one of two messages (for, for example, MQTT or other control mechanism), the second output has a topic of "status" and contains a simple 1 or 0 every minute in the payload and also has additional outputs reflecting the status message in msg.state and message time and others. The third output presents a message which could be used for speech or debugging. 
@@ -22,10 +22,10 @@ The command list for manual injection is as follows:
 	-off_override        - manually override the off time (in minutes or hours and minutes - space separated i.e. inject "off_override 21:00" or just "off_override" to cancel)
 	-timer X [s m]       - Manual seconds timer sets the output on for X seconds (or minutes)
 	-timeoff X (as above)
-	-geo_override         - Example "geo_override" (no quotes) clears the longitude and latitude override and reverts back to those you set manually in BigTimer panel
-                      whereas "geo_override 37.7 -2.53" sets a location in southern Spain - values from Google maps. 
-                      Use a just-after-startup INJECT node to insert values for example from a global vsr.
-
+	-geo_override         - Example "geo_override" (no quotes) clears the longitude and latitude override and reverts back to those you set manually in BigTimer panel, whereas "geo_override 37.7 -2.53" sets a location in southern Spain - values from Google maps. 
+ 
+Use a just-after-startup INJECT node to insert values for example from a global variable
+.
 Note that on_override and off_override settings will be lost if Node-Red is stopped and restarted or if the board/computer is rebooted.
 Check also on_offset_override and off_offset_override
 

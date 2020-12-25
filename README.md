@@ -11,29 +11,18 @@ BigTimer also has an input. This can be used to override the schedule - valid co
 
 The command list for manual injection is as follows:
 
-sync                - simply force an output
-
-on or 1             - turn the output on (reverts next schedule change)
-
-off or 0            - turn the output off (reverts next schedule change)
-
-toggle              - Manual toggle - no matter which mode (auto or manual) will toggle the output (see on and off)
-
-default or auto     - return to auto state
-
-manual              - When using (1/0) to override output, this will stop reversion at schedule change)
-
-stop                - stop the scheduler - set the output off
-
-on_override         - manually override the on time (in minutes or hours and minutes - space separated i.e. inject "on_override 20:00" or just "on_override" to cancel)
-
-off_override        - manually override the off time (in minutes or hours and minutes - space separated i.e. inject "off_override 21:00" or just "off_override" to cancel)
-
-timer X [s m]       - Manual seconds timer sets the output on for X seconds (or minutes)
-
-timeoff X (as above)
-
-geo_override         - Example "geo_override" (no quotes) clears the longitude and latitude override and reverts back to those you set manually in BigTimer panel
+	-sync                - simply force an output
+	-on or 1             - turn the output on (reverts next schedule change)
+	-off or 0            - turn the output off (reverts next schedule change)
+	-toggle              - Manual toggle - no matter which mode (auto or manual) will toggle the output (see on and off)
+	-default or auto     - return to auto state
+	-manual              - When using (1/0) to override output, this will stop reversion at schedule change)
+	-stop                - stop the scheduler - set the output off
+	-on_override         - manually override the on time (in minutes or hours and minutes - space separated i.e. inject "on_override 20:00" or just "on_override" to cancel)
+	-off_override        - manually override the off time (in minutes or hours and minutes - space separated i.e. inject "off_override 21:00" or just "off_override" to cancel)
+	-timer X [s m]       - Manual seconds timer sets the output on for X seconds (or minutes)
+	-timeoff X (as above)
+	-geo_override         - Example "geo_override" (no quotes) clears the longitude and latitude override and reverts back to those you set manually in BigTimer panel
                       whereas "geo_override 37.7 -2.53" sets a location in southern Spain - values from Google maps. 
                       Use a just-after-startup INJECT node to insert values for example from a global vsr.
 
@@ -49,53 +38,52 @@ For those occasions where "alternative days" are required there are checkbox opt
 Note - if upgrading to a later version of BigTimer - check your settings. More information on BigTimer. my other nodes and a range of home-control-related projects can be found at https://tech.scargill.net
 
 From v2.0.7. the first BigTimer output features: (for example using GPIO12 on ESP8266 and ESP-GO - here we are in auto mode but have added a manual "timer" command for a short override)
-payload: {out12:1}
-topic: sonoff4/toesp
-state: "on"
-value: 1
-autostate: 1
-manualstate: 1
-timeout: 1439
-temporaryManual: 1
-permanentManual:0
-now: 669
-timer: 600
-duration:0
-timer_left: 10
-stamp: 1544959025262
+
+	-payload: {out12:1}
+	-topic: sonoff4/toesp
+	-state: "on"
+	-value: 1
+	-autostate: 1
+	-manualstate: 1
+	-timeout: 1439
+	-temporaryManual: 1
+	-permanentManual:0
+	-now: 669
+	-timer: 600
+	-duration:0
+	-timer_left: 10
+	-stamp: 1544959025262
 
 The second BigTimer output (v1.55 onwards) now outputs a range of values every minute (in minutes past the beginning of the day) including sunrise and sunset. 
 
 Example:
 
-payload: 0
-reference: "sonoff02/toesp:{out12:1}:{out12:0}:1287"
-topic: "status"
-state: "OFF Not-today"
-time: ""
-timer: 0
-name: "Office Green Light Timer"
-start: 1395
-end: 1425
-dusk: 1108
-dawn: 372
-solarNoon: 740
-sunrise: 407
-sunset: 1073
-night: 1190
-nightEnd: 290
-now: 1287
-timer: 600
-duration: 0
-timer_left: 10
-onOverride: -1
-offOverride: -1
-stamp: 1544959537232
+	-payload: 0
+	-reference: "sonoff02/toesp:{out12:1}:{out12:0}:1287"
+	-topic: "status"
+	-state: "OFF Not-today"
+	-time: ""
+	-timer: 0
+	-name: "Office Green Light Timer"
+	-start: 1395
+	-end: 1425
+	-dusk: 1108
+	-dawn: 372
+	-solarNoon: 740
+	-sunrise: 407
+	-sunset: 1073
+	-night: 1190
+	-nightEnd: 290
+	-now: 1287
+	-timer: 600
+	-duration: 0
+	-timer_left: 10
+	-onOverride: -1
+	-offOverride: -1
+	-stamp: 1544959537232
 
 Time values above are in minutes past the beginning of the day.
 
 You can typically access these in a Node-Red function as msg.payload, msg.reference etc. See the blog at https://tech.scargill.net/big-timer for more info.
 
 Typical use for the override - set the on time manually to 6:15pm i.e. "on_override 18:15" in msg.payload to the input simply use "on_override -1" (without quotes) to return to normal time settings - when in override the normal status dot below the node will turn into a ring.
-
-

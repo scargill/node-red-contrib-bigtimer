@@ -1,12 +1,19 @@
- <!--
-	This node is copyright (c) 2020 Peter Scargill - but as I've had so
-	many ideas from others - consider it free to use for whatever
-	purpose you like. If you redesign it please remember to include
-	my name and link to help promote the blog https://tech.scargill.net
-	This software puts out one of two messages on change of state 
-    which could be sent to the MQTT node, tests every minute and can
-	be over-ridden manually. See help.
--->
+/**
+ * This node is copyright (c) 2017-2021 Peter Scargill. Please consider
+ * it free to use for whatever timing purpose you like. If you wish to make
+ * changes please note you have the full source when you install BigTimer which
+ * essentially is just 2 files (html and js). I maintain BigTimer via 
+ * https://tech.scargill.net/big-timer and will look at any code with a view to 
+ * incorporating in the main BigTimer. I will not however support or comment on 
+ * any unofficial "github repositories". I do not use Github for this as I'd
+ * rather encourage people to send code to me to test and release rather than confuse
+ * any of the many users of BigTimer with various clones and versions. See version 
+ * number in package.json
+ *
+ * If you find BigTimer REALLY useful - on the blog (right column) is a PAYPAL link to
+ * help support the blog and fund my need for new gadgets.
+ */
+
 <style>
 .bigTimer { color: orange; }
 .bigTimerCheck { width: 64px; float: left; margin-left: 0px; }
@@ -133,10 +140,6 @@
             <option value="5007">Moonrise</option>
             <option value="5008">Moonset</option>
 
-			
-
-			
-			
         </select>
 
         <label style="width:16%" for="node-input-endtime"><i class="fa fa-clock-o"></i> Off Time</label>
@@ -721,6 +724,48 @@
 		<label  style="width:16%" for="node-input-xmonth6"><i class="fa fa-calendar-o"></i> Month 6</label>
 		<input  style="width:26%" type="text" id="node-input-xmonth6" value="0" placeholder="0">
 	</div>
+ 
+ 	<div class="form-row">
+		<label  style="width:16%" for="node-input-xday7"><i class="fa fa-calendar-o"></i> Day 7</label>
+		<input  style="width:26%" type="text" id="node-input-xday7" value="0" placeholder="0">
+		<label  style="width:16%" for="node-input-xmonth7"><i class="fa fa-calendar-o"></i> Month 7</label>
+		<input  style="width:26%" type="text" id="node-input-xmonth7" value="0" placeholder="0">
+	</div>
+ 
+ 	<div class="form-row">
+		<label  style="width:16%" for="node-input-xday8"><i class="fa fa-calendar-o"></i> Day 8</label>
+		<input  style="width:26%" type="text" id="node-input-xday8" value="0" placeholder="0">
+		<label  style="width:16%" for="node-input-xmonth8"><i class="fa fa-calendar-o"></i> Month 8</label>
+		<input  style="width:26%" type="text" id="node-input-xmonth8" value="0" placeholder="0">
+	</div>
+ 
+	<div class="form-row">
+		<label  style="width:16%" for="node-input-xday9"><i class="fa fa-calendar-o"></i> Day 9</label>
+		<input  style="width:26%" type="text" id="node-input-xday9" value="0" placeholder="0">
+		<label  style="width:16%" for="node-input-xmonth9"><i class="fa fa-calendar-o"></i> Month 9</label>
+		<input  style="width:26%" type="text" id="node-input-xmonth9" value="0" placeholder="0">
+	</div>
+ 
+ 	<div class="form-row">
+		<label  style="width:16%" for="node-input-xday10"><i class="fa fa-calendar-o"></i> Day 10</label>
+		<input  style="width:26%" type="text" id="node-input-xday10" value="0" placeholder="0">
+		<label  style="width:16%" for="node-input-xmonth10"><i class="fa fa-calendar-o"></i> Month 10</label>
+		<input  style="width:26%" type="text" id="node-input-xmonth10" value="0" placeholder="0">
+	</div>
+ 
+ 	<div class="form-row">
+		<label  style="width:16%" for="node-input-xday11"><i class="fa fa-calendar-o"></i> Day 11</label>
+		<input  style="width:26%" type="text" id="node-input-xday11" value="0" placeholder="0">
+		<label  style="width:16%" for="node-input-xmonth11"><i class="fa fa-calendar-o"></i> Month 11</label>
+		<input  style="width:26%" type="text" id="node-input-xmonth11" value="0" placeholder="0">
+	</div>
+ 
+ 	<div class="form-row">
+		<label  style="width:16%" for="node-input-xday12"><i class="fa fa-calendar-o"></i> Day 12</label>
+		<input  style="width:26%" type="text" id="node-input-xday12" value="0" placeholder="0">
+		<label  style="width:16%" for="node-input-xmonth12"><i class="fa fa-calendar-o"></i> Month 12</label>
+		<input  style="width:26%" type="text" id="node-input-xmonth12" value="0" placeholder="0">
+	</div>
 	
 	<p class="bigTimer">Exclude special weekdays of the month (optional) Sun=1 etc. Week=1-5</p>
 	<div class="form-row">
@@ -824,15 +869,8 @@
 		<span class="bigTimer bigTimerCheck2"><input type="checkbox" class="bigTimer" id="node-input-repeat" placeholder="repeat" > Repeat output</span>
 		<span class="bigTimer bigTimerCheck2"><input type="checkbox" class="bigTimer" id="node-input-atstart" placeholder="atstart" > Output at startup</span>
 		<br/>
- 	</div>
-
-	<div>
-		<span class="bigTimer bigTimerCheck2"><input type="checkbox" class="bigTimer" id="node-input-noinversion1" placeholder="repeat" > No inversion timer 1 (&lt;12hr only)</span>
-		<span class="bigTimer bigTimerCheck2"><input type="checkbox" class="bigTimer" id="node-input-noinversion2" placeholder="repeat" > No inversion timer 2 (&lt;12hr only)</span>
-		<br/>  
-  </div>
-<br/>
- 
+	</div><br/>
+	
 </div>
 	
 </script>
@@ -877,11 +915,6 @@
    You can if you wish (from v2.3.0 onwards) for example merely turn on BigTimer one day every month of the year by turning off ALL months and using the 12 special days.
    For those occasions where "alternative days" are required there are checkbox options to BAN output on even and/or odd days of the month.
 
-  <h3><span style="color:cyan">No Inversions</span></h3>
-  If you use a timer with one fixed time and one dynamic time which varies with the season - you might have a timer that inverts and runs for the better part of the whole day. This option will disable any timer than would run for more than 12 hours.
-  For example a timer set from 7am until sunrise will work over winter, but in the summer when sunrise is before 7am, the timer would normally run from 7am all day and night until sunrise - this is probably not what you want!
-
-
     <h3><span style="color:cyan">References</span></h3>
 	<p>See the Big Timer doc in the <a target="_blank" href="https://tech.scargill.net/big-timer"> scargill tech blog</a> for more information.</p>
     <h3><span style="color:cyan">Dependencies</span></h3>
@@ -894,7 +927,7 @@
 <script type="text/javascript">
     RED.nodes.registerType('bigtimer',{
         category: 'advanced-input',
-        color:"#99ff00",
+        color:"#88dd22",
         inputLabels: "Optional overrides",
         outputLabels: ["one-off message","outputs every minute","speech/log output"],
         defaults: {
@@ -987,6 +1020,18 @@
 			xmonth5: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
 			xday6: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
 			xmonth6: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xday7: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xmonth7: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xday8: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xmonth8: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xday9: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xmonth9: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xday10: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xmonth10: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xday11: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xmonth11: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xday12: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
+			xmonth12: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },      
 
 			xd1: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },
 			xw1: {value:0,validate:function(v) { return((v==="") || (RED.validators.number(v)))} },	
@@ -1011,10 +1056,8 @@
      
 			repeat: {value:true, required: false},
 			atstart: {value:true, required: false},
-			noinversion1: {value:false, required: false},
-			noinversion2: {value:false, required: false},
-      odd: {value:false, required: false},
-      even: {value:false, required: false}
+            odd: {value:false, required: false},
+            even: {value:false, required: false}
 			},
         inputs:1,
         outputs:3,

@@ -24,20 +24,23 @@ The command list for manual injection is as follows:
 	-timeoff X (as above)
 	-geo_override         - Example "geo_override" (no quotes) clears the longitude and latitude override and reverts back to those you set manually in BigTimer panel, whereas "geo_override 37.7 -2.53" sets a location in southern Spain - values from Google maps. 
  
-Use a just-after-startup INJECT node to insert values for example from a global variable
-.
-Note that on_override and off_override settings will be lost if Node-Red is stopped and restarted or if the board/computer is rebooted.
-Check also on_offset_override and off_offset_override
+Use a just-after-startup INJECT node to insert values for example from a global variable. 
+
+Note that **on_override** and **off_override** settings will be lost if Node-Red is stopped and restarted or if the board/computer is rebooted.
+Check also **on_offset_override** and **off_offset_override**
 
 ## Special Days
 These include special days (i.e. 25/12) and special weekdays (i.e. first Tuesday of the month) and as of v2.0.0 these can be included or excluded.
-You can if you wish (from v2.3.0 onwards) for example merely turn on BigTimer one day every month of the year by turning off ALL months and using the 12 special days.
+You can if you wish (from v2.3.0 onwards) for example merely turn on BigTimer one day every month of the year by turning off ALL months and using any of the 12 special days.
 For those occasions where "alternative days" are required there are checkbox options to BAN output on even and/or odd days of the month.
 
 ## General
-Note - if upgrading to a later version of BigTimer - check your settings. More information on BigTimer. my other nodes and a range of home-control-related projects can be found at https://tech.scargill.net
+Note - if upgrading to a later version of BigTimer - check your settings. More information on BigTimer, my other nodes and a range of home-control-related projects can be found at [the tech blog](https://tech.scargill.net).
 
-From v2.0.7. the first BigTimer output features: (for example using GPIO12 on ESP8266 and ESP-GO - here we are in auto mode but have added a manual "timer" command for a short override)
+
+From v2.7.6 - Improved control of second timer on/off override
+ 
+From v2.0.7 - BigTimer output #1 features the following: (for example using GPIO12 on ESP8266 and ESP-GO - here we are in auto mode but have added a manual "timer" command for a short override)
 
 	-payload: {out12:1}
 	-topic: sonoff4/toesp
@@ -84,6 +87,6 @@ Example:
 
 Time values above are in minutes past the beginning of the day.
 
-You can typically access these in a Node-Red function as msg.payload, msg.reference etc. See the blog at https://tech.scargill.net/big-timer for more info.
+You can typically access these in a Node-Red function as msg.payload, msg.reference etc. See the [tech blog bigtimer entry](https://tech.scargill.net/big-timer) for more info.
 
-Typical use for the override - set the on time manually to 6:15pm i.e. "on_override 18:15" in msg.payload to the input simply use "on_override -1" (without quotes) to return to normal time settings - when in override the normal status dot below the node will turn into a ring.
+Typical use for the override - set the **on** time manually to 6:15pm i.e. "on_override 18:15" in msg.payload to the input simply use **on_override -1** to return to normal time settings - when in override the normal status dot below the node will turn into a ring.
